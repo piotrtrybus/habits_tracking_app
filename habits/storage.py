@@ -12,3 +12,12 @@ def load_habits(filepath='habits.json'):
         return [Habit.from_dict(d) for d in data]
     except FileNotFoundError:
         return []
+
+
+def load_predefined_habits(filepath='predefined_habits.json'):
+    try:
+        with open(filepath) as f:
+            data = json.load(f)
+        return [Habit.from_dict(d) for d in data]
+    except FileNotFoundError:
+        return []
