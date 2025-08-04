@@ -21,11 +21,6 @@ def select_habit(habits):
     choice = int(input("Select a habit number: ")) - 1
     return habits[choice] if 0 <= choice < len(habits) else None
 
-#def list_all(habits):
-    #print(habits)
-    #for h in habits:
-    #    return(f"- {h.name} ({h.periodicity}), created on {h.created_at.date()}")
-
 
 def main():
     habits = load_habits()
@@ -35,8 +30,11 @@ def main():
         choice = input("Your choice: ")
 
         if choice == "1":
-            for h in habits:
-                print(f"- {h.name} ({h.periodicity}), created on {h.created_at.date()}")
+            if habits:
+                for h in habits:
+                    print(f"- {h.name} ({h.periodicity}), created on {h.created_at.date()}")
+            else:
+                print("No habits found")
         elif choice == "2":
             name = input("Enter habit name: ")
             period = input("Enter periodicity (daily/weekly): ").lower()
@@ -62,7 +60,8 @@ def main():
             print("4. Longest streak (specific habit)")
             sub_choice = input("Choose option: ")
             if sub_choice == "1":
-                print(list_all(habits))
+                for h in habits:
+                    print(f"- {h.name} ({h.periodicity}), created on {h.created_at.date()}")
             elif sub_choice == "2":
                 p = input("Enter periodicity (daily/weekly): ")
                 print([h.name for h in filter_by_periodicity(habits, p)])
