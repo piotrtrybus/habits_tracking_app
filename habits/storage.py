@@ -5,7 +5,7 @@ def save_habits(habits, filepath='habits.json'):
     with open(filepath, 'w') as f:
         json.dump([h.to_dict() for h in habits], f)
 
-def load_habits(filepath='/Users/piotrtrybus/Documents/habit_tracking_app/habits.json'):
+def load_habits(filepath='habits.json'):
     try:
         with open(filepath) as f:
             data = json.load(f)
