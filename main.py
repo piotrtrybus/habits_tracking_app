@@ -16,21 +16,22 @@ def print_menu():
     print("5. Analyze habits")
     print("0. Exit")
 
-def select_habit(habits, predefined_habits):
+def select_habit(habits):
     habit_counter = 0
     for i, h in enumerate(habits):
         habit_counter += 1
         print(f"{habit_counter}. {h.name} ({h.periodicity})")
-    for i, h in enumerate(predefined_habits):
-        habit_counter += 1
-        print(f"{habit_counter}. {h.name} ({h.periodicity})")
+    #for i, h in enumerate(predefined_habits):
+    #    habit_counter += 1
+    #    print(f"{habit_counter}. {h.name} ({h.periodicity})")
     choice = int(input("Select a habit number: ")) - 1
     return habits[choice] if 0 <= choice < len(habits) else None
 
 
 def main():
-    habits = load_habits()
+    custom_habits = load_habits()
     predefined_habits = load_predefined_habits()
+    habits = custom_habits + predefined_habits
 
     while True:
         print_menu()
@@ -65,7 +66,7 @@ def main():
             if not habits:
                 print("No habits to complete.")
                 continue
-            habit = select_habit(habits,predefined_habits)
+            habit = select_habit(habits)
             if habit:
                 habit.complete()
                 print(f"Marked '{habit.name}' as completed.")
