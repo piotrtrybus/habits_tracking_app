@@ -22,3 +22,4 @@ def streak(habit):
         else:
             break
     return streak
+

@@ -9,11 +9,11 @@ from analytics.analytics_module import (
 
 def print_menu():
     print("\nHABIT TRACKER")
-    print("1. View custom habits")
-    print("2. View predefined habits")
-    print("3. Add a new habit") 
-    print("4. Log existing habit")
-    print("5. Analyze habits")
+    print("1. View all habits")
+    #print("2. View predefined habits")
+    print("2. Add a new habit") 
+    print("3. Log existing habit")
+    print("4. Analyze habits")
     print("0. Exit")
 
 def select_habit(habits):
@@ -29,9 +29,9 @@ def select_habit(habits):
 
 
 def main():
-    custom_habits = load_habits()
-    predefined_habits = load_predefined_habits()
-    habits = custom_habits + predefined_habits
+    habits = load_habits()
+   #predefined_habits = load_predefined_habits()
+    #habits = custom_habits + predefined_habits
 
     while True:
         print_menu()
@@ -43,17 +43,10 @@ def main():
                     print(f"- {h.name} ({h.periodicity}), created on {h.created_at.date()}")
             else:
                 print("No habits found")
+                continue
 
 
-        if choice == "2":
-            if predefined_habits:
-                for h in predefined_habits:
-                    print(f"- {h.name} ({h.periodicity})")
-            else:
-                print("No predefined habits found")
-
-
-        elif choice == "3":
+        elif choice == "2":
             name = input("Enter habit name: ")
             period = input("Enter periodicity (daily/weekly): ").lower()
             try:
@@ -62,7 +55,7 @@ def main():
                 print("Habit added.")
             except ValueError as e:
                 print(f"Error: {e}")
-        elif choice == "4":
+        elif choice == "3":
             if not habits:
                 print("No habits to complete.")
                 continue
@@ -70,7 +63,9 @@ def main():
             if habit:
                 habit.complete()
                 print(f"Marked '{habit.name}' as completed.")
-        elif choice == "5":
+                continue
+
+        elif choice == "4":
             print("Analytics:")
             print("1. List all habits")
             print("2. Filter by periodicity")
