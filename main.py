@@ -10,7 +10,6 @@ from analytics.analytics_module import (
 def print_menu():
     print("\nHABIT TRACKER")
     print("1. View all habits")
-    #print("2. View predefined habits")
     print("2. Add a new habit") 
     print("3. Log existing habit")
     print("4. Analyze habits")
@@ -21,17 +20,12 @@ def select_habit(habits):
     for i, h in enumerate(habits):
         habit_counter += 1
         print(f"{habit_counter}. {h.name} ({h.periodicity})")
-    #for i, h in enumerate(predefined_habits):
-    #    habit_counter += 1
-    #    print(f"{habit_counter}. {h.name} ({h.periodicity})")
     choice = int(input("Select a habit number: ")) - 1
     return habits[choice] if 0 <= choice < len(habits) else None
 
 
 def main():
     habits = load_habits()
-   #predefined_habits = load_predefined_habits()
-    #habits = custom_habits + predefined_habits
 
     while True:
         print_menu()
